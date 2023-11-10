@@ -1,0 +1,515 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Cisco CLI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>The I.T Shed</strong> </a>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Command Line Interface (CLI)</h1>
+									</header>
+
+	
+
+
+									<div class="entry-content si-entry" itemprop="text">
+	
+										
+										
+										
+										
+										<p>The Command Line Interface (CLI) is used as an interface to your Network equipment such as Routers and Switches. CLI on Packet Tracer;</p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large"><img width="566" height="238" src="wp-content/uploads/2020/10/image-4.png" alt="" class="wp-image-4469" srcset="wp-content/uploads/2020/10/image-4.png 566w, wp-content/uploads/2020/10/image-4-300x126.png 300w" sizes="(max-width: 566px) 100vw, 566px" /><figcaption>CLI on Packet Tracer</figcaption></figure></div>
+										
+										
+										
+										<p></p>
+										
+										
+										
+										<p><strong><strong>Accessing the CLI</strong></strong></p>
+										
+										
+										
+										<p>A Terminal Emulator such as <em>Putty</em> can be used to access the CLI.</p>
+										
+										
+										
+										
+										
+										
+										
+										<h5>This can be achieved a number of different ways; one way is to physically connect your PC to the relevant Network device using a crossover cable. Have a look at how to this step by step <a href="https://theitshed.com/remote-access-part-1-connect-via-console-cable/">here </a></h5>
+										
+										
+										
+										<div class="wp-container-2 wp-block-group"><div class="wp-block-group__inner-container">
+										<div class="wp-container-1 wp-block-group alignwide"><div class="wp-block-group__inner-container">
+										<div class="wp-block-media-text alignwide has-media-on-the-right is-stacked-on-mobile" style="grid-template-columns:auto 31%"><figure class="wp-block-media-text__media"><img src="images/console-cable.jpg" alt="This image has an empty alt attribute; its file name is console-cable.jpg"/></figure><div class="wp-block-media-text__content">
+										<figure class="wp-block-image is-resized"><img loading="lazy" src="images/switch-rollover-1.jpg" alt="This image has an empty alt attribute; its file name is switch-rollover-1.jpg" width="373" height="229"/></figure>
+										</div></div>
+										</div></div>
+										
+										
+										
+										<p>The other way to access the CLI is to connect to your Network Device remotely using <a href="telnet.htm">Telnet</a> or <a href="ssh.htm">SSH</a>. SSH is a more secure version of Telnet.</p>
+										</div></div>
+										
+										
+										
+										<h3><strong> CLI Modes</strong></h3>
+										
+										
+										
+										<ul><li>You must type the right commands in the right modes</li><li>Commands that work in config mode will not work in user mode etc</li></ul>
+										
+										
+										
+										<p><strong>User Mode&nbsp;&nbsp;&nbsp;&nbsp;</strong></p>
+										
+										
+										
+										<p>User mode is the first mode you encounter when you access the device.</p>
+										
+										
+										
+										<p>Router&gt;</p>
+										
+										
+										
+										<p>User mode is read only so doesn’t allow you make any changes to any device configuration.</p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="548" height="164" src="wp-content/uploads/2020/10/image-8.png" alt="" class="wp-image-4476" srcset="wp-content/uploads/2020/10/image-8.png 548w, wp-content/uploads/2020/10/image-8-300x90.png 300w" sizes="(max-width: 548px) 100vw, 548px" /><figcaption>User Mode &gt;</figcaption></figure></div>
+										
+										
+										
+										<p><strong>Enable/Privileged Mode &nbsp; &nbsp; &nbsp; </strong></p>
+										
+										
+										
+										<p>Enable mode (or privileged mode) is accessed by typing the <em><strong>enable </strong></em>command in user mode</p>
+										
+										
+										
+										<p></p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="574" height="198" src="wp-content/uploads/2020/10/image-9.png" alt="" class="wp-image-4477" srcset="wp-content/uploads/2020/10/image-9.png 574w,wp-content/uploads/2020/10/image-9-300x103.png 300w" sizes="(max-width: 574px) 100vw, 574px" /><figcaption><em>Router#</em> indicates you are in Enable/Privileged mode</figcaption></figure></div>
+										
+										
+										
+										<p>Enable mode gives more command choices and allows you go to navigate to other modes. You have the option to password protect enable mode (more on this soon).</p>
+										
+										
+										
+										<h4><strong>Disable Command</strong></h4>
+										
+										
+										
+										<p>To return to <strong>User Mode</strong> from <strong>Enable/Privilaged</strong> mode type</p>
+										
+										
+										
+										<p><em>disable</em></p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-10.png" alt="" class="wp-image-4479" width="229" height="104"/></figure></div>
+										
+										
+										
+										<h4><strong>Global Configuration mode &nbsp; &nbsp; </strong></h4>
+										
+										
+										
+										<p>Global Configuration mode allows you to make changes to the devices system configuration. The commands available will depend on what type of interface you are configuring.</p>
+										
+										
+										
+										<p>To enter Global Configuration mode type the command <em>conf t</em> in enable mode;</p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="560" height="165" src="wp-content/uploads/2020/10/image-18.png" alt="" class="wp-image-4493" srcset="wp-content/uploads/2020/10/image-18.png 560w, wp-content/uploads/2020/10/image-18-300x88.png 300w" sizes="(max-width: 560px) 100vw, 560px" /></figure></div>
+										
+										
+										
+										<p>While we are in Global Config mode we will take the opportunity to set up an enable mode password. </p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-16.png" alt="" class="wp-image-4490" width="473" height="153" srcset="wp-content/uploads/2020/10/image-16.png 376w, wp-content/uploads/2020/10/image-16-300x97.png 300w" sizes="(max-width: 473px) 100vw, 473px" /></figure></div>
+										
+										
+										
+										<p>You will be prompted for this password when moving from User mode into Enable mode</p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="125" height="75" src="wp-content/uploads/2020/10/image-19.png" alt="" class="wp-image-4494"/></figure></div>
+										
+										
+										
+										<p></p>
+										
+										
+										
+										<h3><strong>Other Modes:</strong></h3>
+										
+										
+										
+										<p><strong>Interface Mode </strong></p>
+										
+										
+										
+										<p>Interface mode allows you to configure a particular interface on the Router or Switch etc. In the following example I access interface Gi0/0/1 in order to configure an IP Address and sub net mask. </p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-12.png" alt="" class="wp-image-4483" width="445" height="79" srcset="wp-content/uploads/2020/10/image-12.png 395w, wp-content/uploads/2020/10/image-12-300x53.png 300w" sizes="(max-width: 445px) 100vw, 445px" /><figcaption>Interface Mode</figcaption></figure></div>
+										
+										
+										
+										<h4><strong>Line Mode  </strong></h4>
+										
+										
+										
+										<p>Line mode is accessed from Global Config mode and is used to connect via Telnet and SSH. In the following example I wll set up a telnet connection on the Router by typing the command <em><strong>line vty 0 4</strong></em>  followed by the command <strong><em>login</em></strong> . Finally we set a line password, in this case <em><strong>cisco</strong></em> by typing the command<em><strong> password cisco </strong></em>. We then <em><strong>exit</strong></em> back to Global Config mode.</p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-21.png" alt="" class="wp-image-4496" width="379" height="108" srcset="wp-content/uploads/2020/10/image-21.png 306w, wp-content/uploads/2020/10/image-21-300x85.png 300w" sizes="(max-width: 379px) 100vw, 379px" /></figure></div>
+										
+										
+										
+										<h4><strong>Putting it all together</strong></h4>
+										
+										
+										
+										<p>So far I have shown you snippets of commands but lets now look at putting it into a bit more context. </p>
+										
+										
+										
+										<p>I will use the example of configuring two Cisco Routers with IP Addresses and Telnet. I will then Telnet from Router 1 to Router 2 via Router 1&#8217;s Command Line Interface.</p>
+										
+										
+										
+										<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-20.png" alt="" class="wp-image-4495" width="427" height="183" srcset="wp-content/uploads/2020/10/image-20.png 338w, wp-content/uploads/2020/10/image-20-300x129.png 300w" sizes="(max-width: 427px) 100vw, 427px" /><figcaption>Two Routers connected via Ethernet Cable</figcaption></figure></div>
+										
+										
+										
+										<figure class="wp-block-image size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-22.png" alt="" class="wp-image-4500" width="585" height="156" srcset="wp-content/uploads/2020/10/image-22.png 478w, wp-content/uploads/2020/10/image-22-300x80.png 300w" sizes="(max-width: 585px) 100vw, 585px" /></figure>
+										
+										
+										
+										<figure class="wp-block-image size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-23.png" alt="" class="wp-image-4501" width="586" height="188" srcset="wp-content/uploads/2020/10/image-23.png 489w, wp-content/uploads/2020/10/image-23-300x96.png 300w" sizes="(max-width: 586px) 100vw, 586px" /></figure>
+										
+										
+										
+										<figure class="wp-block-image size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-24.png" alt="" class="wp-image-4502" width="576" height="149" srcset="wp-content/uploads/2020/10/image-24.png 484w, wp-content/uploads/2020/10/image-24-300x77.png 300w" sizes="(max-width: 576px) 100vw, 576px" /></figure>
+										
+										
+										
+										<figure class="wp-block-image size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-25.png" alt="" class="wp-image-4504" width="572" height="277" srcset="wp-content/uploads/2020/10/image-25.png 460w, wp-content/uploads/2020/10/image-25-300x145.png 300w" sizes="(max-width: 572px) 100vw, 572px" /></figure>
+										
+										
+										
+										<p></p>
+										
+										
+										
+										<h3><strong>Start and Running Configuration.</strong></h3>
+										
+										
+										
+										<h4><strong>Start Config</strong></h4>
+										
+										
+										
+										<p>Start Config is the configuration of the device when it starts up.  After start up you begin working in running configuration. </p>
+										
+										
+										
+										<h4><strong>Running Config</strong></h4>
+										
+										
+										
+										<p>Is the real time configuration of the router/switch. This information is in RAM so it is not saved for use the next time you start up unless you save the configuration to Start Config. </p>
+										
+										
+										
+										<p>Any changes made in running configuration will not be reflected in the start up configuration unless you save it. Start Config is NVRAM which is more permanent memory.</p>
+										
+										
+										
+										<p>Think of it as opening an MS Word document (Start Config). You begin typing in the document (Running Config). If you need to save your work from Running Config to Start Config otherwise your work will be lost. </p>
+										
+										
+										
+										<p>The official way to do this for the Cisco exam is by typing;</p>
+										
+										
+										
+										<p>Copy running-config startup-config  <em>                            </em><strong><em> </em></strong><em><br></em></p>
+										
+										
+										
+										<figure class="wp-block-image size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/10/image-26.png" alt="" class="wp-image-4509" width="392" height="107"/><figcaption>Copying run config to start config</figcaption></figure>
+										
+										
+										
+										<h4><strong>TFTP Backup</strong></h4>
+										
+										
+										
+										<p>You can copy your configurations to TFTP using the following commands:</p>
+										
+										
+										
+										<ul><li><em>Copyruntftp:</em> (this is a merge)</li><li><em>Copystarttftp:</em> (this is a replacement)</li></ul>
+										
+										
+										
+										<p></p>
+										
+										
+										
+										<h3><strong>Conclusion</strong></h3>
+										
+										
+										
+										<p>So there we have a brief overview of the Command Line Interface (CLI). Below I have written a short summary of the different command modes.</p>
+										
+										
+										
+										<h4><strong> Modes</strong></h4>
+										
+										
+										
+										<ul><li>User mode</li><li>Privileged mode</li><li>Global configuration mode</li></ul>
+										
+										
+										
+										<h4><strong>User Mode</strong></h4>
+										
+										
+										
+										<ul><li>This has a prompt of <strong>></strong> </li><li>Example; <strong>Router></strong></li><li>User mode is only used for a limited amount of monitoring commands</li><li>To change to Privileged Mode</li><li>Type <strong>enable</strong></li><li>Example; <em>Router> enable</em></li><li>This will change the prompt to<strong> #</strong></li><li>Example; <em>Router#</em></li><li>You can use show command to see different things</li><li><strong>Show version</strong> etc</li><li>Or type <strong>show?</strong> To see what options are available to show</li></ul>
+										
+										
+										
+										<h4><strong>Privileged/Enable mode</strong></h4>
+										
+										
+										
+										<ul><li>Type <strong>enable</strong> in User mode</li><li>The prompt for Privileged mode is <strong>#</strong></li><li><em>Router# </em></li><li>Enable mode allows many more show commands</li><li>Can be used for debugging</li><li>Used for configuring the device</li><li>You can only go to Global Configuration Mode via enable mode</li><li>Type; <strong>Conf t </strong>to get to global configuration mode</li><li><strong>Control z</strong> will bring you back to enable mode</li></ul>
+										
+										
+										
+										<h4><strong>Global Configuration mode</strong></h4>
+										
+										
+										
+										<ul><li><strong>(config)#</strong></li><li>Example; <em>Router(config)#</em></li><li>Used for configuring the router, like changing its name and setting banner of the day etc</li></ul>
+										
+										
+										
+										<h4><strong>Interface mode</strong></h4>
+										
+										
+										
+										<ul><li><em>Router(config-if)#</em></li><li>Allows you change the configuration of an individual interface</li><li>i.e the IP address of a routers Fast Ethernet 0/0 interface</li><li>or enable or disable the interface</li><li>Ethernet would have different commands than a serial interface</li></ul>
+										
+										
+										
+										<h4><strong>Copying Running Config to Start Config</strong></h4>
+										
+										
+										
+										<p>You should save your configuration, particularly in the exam unless told not to.</p>
+										
+										
+										
+										<ul><li><em>Copy running-config startup-config</em></li></ul>
+										
+										
+										
+										<p></p>
+
+
+
+
+
+
+
+
+
+<!-- Article Ends-->
+
+									
+
+</section>
+
+</div>
+</div>
+
+
+<!-- Sidebar -->
+<div id="sidebar">
+<div class="inner">
+
+<!-- Search -->
+	<section id="search" class="alt">
+		<form method="post" action="#">
+			<input type="text" name="query" id="query" placeholder="Search" />
+		</form>
+	</section>
+
+<!-- Menu -->
+	<nav id="menu">
+		<header class="major">
+			<h2>Menu</h2>
+		</header>
+		<ul>
+			<li><a href="index.html">Homepage</a></li>
+			<li>
+				<span class="opener">Computer Networking</span>
+				<ul>
+					<li><a href="telnet.htm">Telnet</a></li>
+					<li><a href="ssh.htm">SSH</a></li>												
+					<li><a href="cli.htm">Cisco Command Line Interface</a></li>
+					<li><a href="vlans.htm">Vlans</a></li>
+					<li><a href="voice_vlans.htm">Voice VLans</a></li>
+				</ul>
+			</li>
+			<li>
+				<span class="opener">Python Programming</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			
+			<li>
+				<span class="opener"> C Programming</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			<li>
+				<span class="opener"> Malware Analysis</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+				<li><a href="blank.htm">Blank</a></li>
+			<li>
+				<span class="opener">Blank Submenu</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			<li><a href="blank.htm">Blank</a></li>
+			<li><a href="blank.htm">Blank</a></li>
+			<li><a href="blank.htm">Blank</a></li>
+		</ul>
+	</nav>
+
+<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>Ante interdum</h2>
+		</header>
+		<div class="mini-posts">
+			<article>
+				<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+		</div>
+		<ul class="actions">
+			<li><a href="#" class="button">More</a></li>
+		</ul>
+	</section>
+
+<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>Get in touch</h2>
+		</header>
+		<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+		<ul class="contact">
+			<li class="icon solid fa-envelope"><a href="#">mailtheitshed@gmail.com</a></li>
+		
+			<li class="icon solid fa-home">Dublin, Ireland<br />
+			</li>
+		</ul>
+	</section>
+
+<!-- Footer -->
+	<footer id="footer">
+		<p class="copyright">&copy; The IT Sheds 2023. All rights reserved. 
+	</footer>
+
+</div>
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

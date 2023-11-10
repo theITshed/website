@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Voice Vlans</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>The I.T Shed</strong> </a>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Voice Vlans</h1>
+									</header>
+
+									<p>This is the third article in my VLan series. If you dont know what Vlans are you may want to check out <a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">Vlans; the basics</a> and <a href="https://theitshed.com/configuring-vlans/" target="_blank" rel="noreferrer noopener">Configuring Vlans</a> first.</p>
+
+
+
+									<p>This is the third article in my VLan series. If you dont know what Vlans are you may want to check out <a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">Vlans; the basics</a> and <a href="https://theitshed.com/configuring-vlans/" target="_blank" rel="noreferrer noopener">Configuring Vlans</a> first.</p>
+
+
+
+									<p>Using IP phones is a little different as the phones contain a small in built switch. Your PC connects to the IP phones inbuilt switch using an Ethernet cable. The phone then connects to the Cisco switch as normal. Traffic from your PC routes to the main switch through the phone.</p>
+									
+									
+									
+									<h4><strong>IP Phone Switch</strong></h4>
+									
+									
+									
+									<p>If you click on the phone in Packet Tracer and zoom in you will see the two Ethernet connections. One port for the cable to the PC and the other port is for the connection between the phones switch and the main Cisco switch. </p>
+									
+									
+									
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<h4><strong>Data and Voice Vlans</strong></h4>
+									
+									
+									
+									<p>Phones use two VLans; one for data as normal and the other for voice. Separating the Vlans is helpful for a Quality of Services (QoS) perspective and also for security. With QoS the voice Vlan can be prioritized over data because a phone will become unusable if the voice traffic is patchy or muddled up.</p>
+									
+									
+									
+									<h4><strong>Creating VLans</strong></h4>
+									
+									
+									
+									<p>Creating VLans for voice is not much different than creating regular Vlans. In this example I am going to create the Vlan the short way as I showed in <a href="https://theitshed.com/configuring-vlans/" target="_blank" rel="noreferrer noopener">Configuring Vlans</a>.  Even though the connection carries two Vlans it will be an access connection and not a trunk as you might have thought.</p>
+									
+									
+									
+									<ul><li>Start in Global Configuration mode by accessing interface FA 0/1 (or any interface of the interfaces)</li><li>use the command switchport mode access (to make it an access connection.)</li><li>use the command switchport access vlan 2 (for the data vlan access)</li><li>use the command switchport voice vlan 3 (for the voice vlan)</li></ul>
+									
+									
+									
+									<p>Notice that the Vlans did not exist before hand as we are using the short way to create them. The switch notices this and automatically creates them for us (highlighted in blue). Also note that you can create the data and the voice Vlans on any of the Vlans, it doesn&#8217;t necessarily have to be on Vlan 2 and 3.</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="538" height="113" src="images/image-29.png" alt="" class="wp-image-4210" srcset="images/image-29.png 538w, images/image-29-300x63.png 300w" sizes="(max-width: 538px) 100vw, 538px" /></figure></div>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<h4><strong>Verify Configuration</strong></h4>
+									
+									
+									
+									<p>Now lets verify that we configured it properly. Use the command;</p>
+									
+									
+									
+									<p><em>show interface fastethernet 0/1 switchport</em></p>
+									
+									
+									
+									<p>Notice that the Administrative mode is static access because we manually set it. Notice also that we have two Vlans; the data Vlan; Access mode Vlan 2 and the voice Vlan; Vlan 3.</p>
+									
+									
+									
+									<p>You will notice that the Operational Mode is down. That potentially be for any number of reasons but in this case it is because the IP phone is not powered up. </p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="551" height="380" src="images/image-32.png" alt="" class="wp-image-4216" srcset="images/image-32.png 551w, images/image-32-300x207.png 300w" sizes="(max-width: 551px) 100vw, 551px" /></figure></div>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<h4><strong>Powering the Phone </strong></h4>
+									
+									
+									
+									<p>Some devices on Packet Tracer such as routers have a power button that you need to switch on before using the device. The IP phone needs to be powered up to work but does not have a power button.</p>
+									
+									
+									
+									<p>You will need to drag the power supply located on the bottom right to the power connection on the bottom left of the phone.</p>
+									
+									
+									
+									<figure class="wp-block-image size-large is-resized"><img loading="lazy" src="images/image-27.png" alt="" class="wp-image-4208" width="438" height="430" srcset="images/image-27.png 577w,  images/image-27-300x295.png 300w" sizes="(max-width: 438px) 100vw, 438px" /><figcaption>Drag power supply and connect to power connection on Phone</figcaption></figure>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<p>Once power supply is connect the phone switches on. </p>
+									
+									
+									
+									<figure class="wp-block-image size-large is-resized"><img loading="lazy" src="images/image-28.png" alt="" class="wp-image-4209" width="456" height="428" srcset="images/image-28.png 565w, images/image-28-300x282.png 300w" sizes="(max-width: 456px) 100vw, 456px" /></figure>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<p>Now if we run the command again; </p>
+									
+									
+									
+									<p><em>show interface FastEthernet 0/1 switchport</em> you will find that Operational Mode is now Static Access because the Phone has been powered up</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="545" height="431" src="images/image-34.png" alt="" class="wp-image-4218" srcset="images/image-34.png 545w, images/image-34-300x237.png 300w" sizes="(max-width: 545px) 100vw, 545px" /></figure></div>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<h4><strong>Summary</strong></h4>
+									
+									
+									
+									<p>So there we have it, a quick article showing how to configure data and voice Vlans for IP Phones. There is not much to it really, just make sure you use separate Vlans and use the switchport voice vlan [number] command.</p>
+
+<!-- Article Ends-->
+
+									
+
+</section>
+
+</div>
+</div>
+
+
+<!-- Sidebar -->
+<div id="sidebar">
+<div class="inner">
+
+<!-- Search -->
+	<section id="search" class="alt">
+		<form method="post" action="#">
+			<input type="text" name="query" id="query" placeholder="Search" />
+		</form>
+	</section>
+
+<!-- Menu -->
+	<nav id="menu">
+		<header class="major">
+			<h2>Menu</h2>
+		</header>
+		<ul>
+			<li><a href="index.html">Homepage</a></li>
+			<li>
+				<span class="opener">Computer Networking</span>
+				<ul>
+					<li><a href="telnet.htm">Telnet</a></li>
+					<li><a href="ssh.htm">SSH</a></li>												
+					<li><a href="cli.htm">Cisco Command Line Interface</a></li>
+					<li><a href="vlans.htm">Vlans</a></li>
+					<li><a href="voice_vlans.htm">Voice VLans</a></li>
+				</ul>
+			</li>
+			<li>
+				<span class="opener">Python Programming</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			
+			<li>
+				<span class="opener"> C Programming</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			<li>
+				<span class="opener"> Malware Analysis</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+				<li><a href="blank.htm">Blank</a></li>
+			<li>
+				<span class="opener">Blank Submenu</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			<li><a href="blank.htm">Blank</a></li>
+			<li><a href="blank.htm">Blank</a></li>
+			<li><a href="blank.htm">Blank</a></li>
+		</ul>
+	</nav>
+
+<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>Ante interdum</h2>
+		</header>
+		<div class="mini-posts">
+			<article>
+				<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+		</div>
+		<ul class="actions">
+			<li><a href="#" class="button">More</a></li>
+		</ul>
+	</section>
+
+<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>Get in touch</h2>
+		</header>
+		<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+		<ul class="contact">
+			<li class="icon solid fa-envelope"><a href="#">mailtheitshed@gmail.com</a></li>
+		
+			<li class="icon solid fa-home">Dublin, Ireland<br />
+			</li>
+		</ul>
+	</section>
+
+<!-- Footer -->
+	<footer id="footer">
+		<p class="copyright">&copy; The IT Sheds 2023. All rights reserved. 
+	</footer>
+
+</div>
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

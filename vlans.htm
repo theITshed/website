@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>VLans</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>The I.T Shed</strong> </a>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Virtual Lans (VLans)</h1>
+									</header>
+
+
+									<!-- article begin -->
+
+
+
+									<p>In my last article<a href="https://theitshed.com/vlans-the-basics/"> </a><a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">VLAN’s the basics</a> I discussed what a VLAN is and why we would use them. In this article I will look at actually configuring a VLAN on the CLI.</p>
+
+
+
+									<h3>Packet Tracer</h3>
+									
+									
+									
+									<p>Ok lets start by opening Cisco Packet Tracer, selecting a network Switch and opening the CLI</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/08/image-8.png" alt="" class="wp-image-4132" width="498" height="346" srcset="wp-content/uploads/2020/08/image-8.png 921w, wp-content/uploads/2020/08/image-8-300x208.png 300w, wp-content/uploads/2020/08/image-8-768x534.png 768w" sizes="(max-width: 498px) 100vw, 498px" /><figcaption>Open the Switch CLI on Packet Tracer</figcaption></figure></div>
+									
+									
+									<br>
+									<h3>Vlan Range</h3>
+									
+									
+									
+									<p>Vlans range from 1 to 4094 and are broken down into sub categories;</p>
+									
+									
+									
+									<ul><li>Vlan 1 contains all the interfaces of the switch by default and is sometimes refereed to as the native Vlan</li><li>Standard range 1 to 1005</li><li>Extended range 1006 to 4094</li><li>Legacy range 1002 to 1005</li></ul>
+									
+									
+									
+									<p>Some protocols behave differently depending on the range of the Vlan. Legacy Vlans were used for older technologies and probably wont feature much in the CCNA exam.</p>
+									
+									
+									
+									<p>Use the show vlan command to see all the configured vlans. As you will see Vlan 1 and Vlan 1002 to 1005 are configured by default.</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/08/image-18.png" alt="" class="wp-image-4157" width="500" height="422" srcset="wp-content/uploads/2020/08/image-18.png 644w, wp-content/uploads/2020/08/image-18-300x253.png 300w" sizes="(max-width: 500px) 100vw, 500px" /><figcaption>Show Vlan</figcaption></figure></div>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<p>Enter Global Configuration mode by first going to Enable mode then Global Configuration mode</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/08/image-10.png" alt="" class="wp-image-4135" width="533" height="162" srcset="wp-content/uploads/2020/08/image-10.png 573w, wp-content/uploads/2020/08/image-10-300x91.png 300w" sizes="(max-width: 533px) 100vw, 533px" /><figcaption>Enter Global Config mode<br></figcaption></figure></div>
+									
+									<br>
+									
+									<h3>Create the Vlan</h3>
+									
+									
+									
+									<p>There are two ways to create a Vlan;<em> Globally</em> or <em>At time of assignment</em>.</p>
+									
+									
+									
+									<h4>Globally</h4>
+									
+									
+									
+									<p>To create a VLAN globally type the vlan [number]. This will create the vlan and enter the vlan configuration.   In this case we will create a <em>Vlan 10</em> and name it sales by using the command <em>name sales</em>. Now exit from vlan configuration</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/08/image-12.png" alt="" class="wp-image-4137" width="531" height="194" srcset="wp-content/uploads/2020/08/image-12.png 471w, wp-content/uploads/2020/08/image-12-300x110.png 300w" sizes="(max-width: 531px) 100vw, 531px" /><figcaption>Create and name the VLAN<br></figcaption></figure></div>
+									
+									<br>
+									
+									<h4>Create VLAN interfaces</h4>
+									
+									
+									
+									<p>Define the interfaces that we will be assigning to the vlan shortly. In our case the sales department will be using the first 10 interfaces, or ports, on the switch.</p>
+									
+									
+									
+									<p>The range command is used to assign a number of interfaces at once.</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/08/image-13.png" alt="" class="wp-image-4138" width="592" height="147" srcset="wp-content/uploads/2020/08/image-13.png 435w, wp-content/uploads/2020/08/image-13-300x74.png 300w" sizes="(max-width: 592px) 100vw, 592px" /><figcaption>Assign interfaces using range command</figcaption></figure></div>
+									
+									<br>
+									
+									<h3>Assigning the interfaces to the VLAN</h3>
+									
+									
+									
+									<p>So far we have created and named the vlan. We have also defined the interfaces we want to use on the Vlan. Now we need to associate them with each other. We achieve this using the command; </p>
+									
+									
+									
+									<p><em>switchport access vlan [number]</em>. This tells the switch to use the interfaces for vlan 10.</p>
+									
+									
+									
+									<p>We also need to tell the switch what type of interfaces these are; whether they are to be used as access or trunk interfaces. To do this we use the command: </p>
+									
+									
+									
+									<p><em>switchport mode [access/trunk/dynamic auto/dynamic desirable]</em>. </p>
+									
+									
+									
+									<p>I will discuss Dynamic Trunk Protocol (DTP) later in this article. For now we will use the command;                  <em>switchport mode access</em> because each interface will be a single access between the switch and an end device.</p>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/08/image-14.png" alt="" class="wp-image-4140" width="584" height="170" srcset="wp-content/uploads/2020/08/image-14.png 467w, wp-content/uploads/2020/08/image-14-300x87.png 300w" sizes="(max-width: 584px) 100vw, 584px" /></figure></div>
+									
+									
+									
+									<p></p>
+									
+									<br>
+									
+									<h3>Complete Command</h3>
+									
+									
+									
+									<p>Now lets put it all toghether</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="568" height="349" src="wp-content/uploads/2020/08/image-16.png" alt="" class="wp-image-4143" srcset="wp-content/uploads/2020/08/image-16.png 568w, wp-content/uploads/2020/08/image-16-300x184.png 300w" sizes="(max-width: 568px) 100vw, 568px" /></figure></div>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<h4>Vlan &#8211; At time of assignment.</h4>
+									
+									
+									
+									<p>There is a quicker way to create a Vlan; At time of assignment. You will need to know both ways if taking the CCNA exam.</p>
+									
+									
+									
+									<p>In this shorter way we skip the initial creation of the Vlan. Instead we just define the interface range and then assign them to our Vlan to the interfaces with the <em>switchport access vlan [number]</em> command.</p>
+									
+									
+									
+									<p>In this case we create Vlan 20. Note that the switch realizes that Vlan 20 was not already created. It then creates it for us, highlighted in blue.</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/08/image-17.png" alt="" class="wp-image-4147" width="610" height="196" srcset="wp-content/uploads/2020/08/image-17.png 542w, wp-content/uploads/2020/08/image-17-300x96.png 300w" sizes="(max-width: 610px) 100vw, 610px" /><figcaption>Shorter way to create Vlan<br></figcaption></figure></div>
+									
+									
+									<br>
+									<h3>Verifying the Vlan</h3>
+									
+									
+									
+									<p>Lets look at the <em>show vlan</em> command; we will see that vlan 10 has been created and interfaces Fa0/1 to Fa0/10 have been assigned to it. You will notice that these interfaces are no longer in the default Vlan 1</p>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/08/image-20.png" alt="" class="wp-image-4162" width="567" height="324" srcset="wp-content/uploads/2020/08/image-20.png 598w, wp-content/uploads/2020/08/image-20-300x172.png 300w" sizes="(max-width: 567px) 100vw, 567px" /></figure></div>
+									
+									
+									
+									<p>Alternatively you can use the <em>show vlan brief</em> command</p>
+									
+									<br>
+									
+									<h3 class="has-text-align-center">Trunking Protocols</h3>
+									
+									
+									
+									<p>Everything so far has concerned working with individual Vlans. Now we will look at setting up connections between multiple switches using Trunking protocols. If you are unsure of the difference between access interfaces and trunk interfaces, have a look at my last post <a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">here</a>.</p>
+									
+									<br>
+									
+									<h3>VLan Trunking Protocol (VTP)</h3>
+									
+									
+									
+									<p>VTP is a Cisco protocol used to advertises Vlan information between switches on the LAN. You can setup your Vlans on just one Switch and VTP will propagate that information to the other switches on the LAN.             These switches will automatically setup corresponding Vlans using the information provided for by VTP.</p>
+									
+									
+									
+									<p>Vlan Trunking Protocol is not used much these days as changes on one switch could cause unexpected changes on other switches throughout the LAN. You can disabled VTP with either of these commands;</p>
+									
+									
+									
+									<ul><li>vtp mode transparent</li><li>vtp mode off global</li></ul>
+									
+									<br>
+									
+									<h3>Dynamic Trunking Protocol (DTP)</h3>
+									
+									
+									
+									<p>DTP is a Cisco protocol that negotiates whether an interface becomes a trunk or not and if it becomes a Trunk; what type of encapsulation to use. DTP will only work on Cisco switches, so if you are using switches from different vendors you will need to switch DPT off.</p>
+									
+									<br>
+									
+									<h4> &#8211; <strong>Types of trunking</strong>; </h4>
+									
+									
+									
+									<p>If the Switches are to trunk; what type of trunking encapsulation should they use, there are two options;</p>
+									
+									
+									
+									<ul><li>Inter-Switch Link (ISL) which is Cisco proprietary and rarely used these days.</li><li>802.1Q (IEEE open source)</li></ul>
+									
+									
+									
+									<p>If the switch allows both ISL and 802.Q then you can set the encapsulation statically to dot1q or isl depending on what you prefer. Alternatively you can let the switches negotiate which type to use. (Nowadays dot1q is the preferred option and newer switches may not support ISL)</p>
+									
+									
+									
+									<p>Use the following command to choose the encapsulation type;</p>
+									
+									
+									
+									<p><em>switchport trunk encapsulation {dot1q | isl | negotiate}</em></p>
+									
+									
+									
+									<p>In the following example I created Vlan 30, assigned it the FA0/1 interface and then I statically assigned it the encapsulation 802.1q. (This particular switch doesn&#8217;t support ISL and therefore the negotiate command wont work either.)</p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="554" height="216" src="wp-content/uploads/2020/08/image-21.png" alt="" class="wp-image-4176" srcset="wp-content/uploads/2020/08/image-21.png 554w, wp-content/uploads/2020/08/image-21-300x117.png 300w" sizes="(max-width: 554px) 100vw, 554px" /></figure></div>
+									
+									
+									
+									<p></p>
+									
+									<br>
+									
+									<h4>&#8211; <strong>Administrative mode;</strong></h4>
+									
+									
+									
+									<p>Administrative mode is what you the user actually configures on the Command Line Interface (CLI). </p>
+									
+									
+									
+									<p>We have configured the encapsulation to be used in the event the interface is a trunk. DTP now gives us the option of statically setting whether to always Trunk never Trunk or let the switches negotiate whether or not to trunk.</p>
+									
+									<br>
+									
+									<h3>Static Set</h3>
+									
+									
+									
+									<p>One option is statically setting the interface to either be an access or trunk, using the following commands;</p>
+									
+									
+									
+									<p><em>Switchport mode access</em>                                                                                                                                        <em>switchport mode trunk</em> </p>
+									
+									
+									
+									<p>Access: set the interface as access; used between the switch and end devices such as PC&#8217;s or servers            Trunk: set the interface as trunk; used between the switch to carry the traffic of many Vlans. </p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="554" height="216" src="wp-content/uploads/2020/08/image-23.png" alt="" class="wp-image-4180" srcset="wp-content/uploads/2020/08/image-23.png 554w, wp-content/uploads/2020/08/image-23-300x117.png 300w" sizes="(max-width: 554px) 100vw, 554px" /></figure></div>
+									
+									<br>
+									
+									<h3>Negotiate</h3>
+									
+									
+									
+									<p>The second option is to let the switches negotiate whether to be an access interface or a trunk;</p>
+									
+									<br>
+									
+									<p><em>Swithport mode dynamic desirable</em>                                                                                                                      <em>switchport mode dynamic auto</em> </p>
+									
+									
+									
+									<ul><li>Dynamic desirable:  initiates negotiation messages and responds to negotiation messages on whether to start trunking. </li><li>Dynamic auto; waits for trunking negotiation messages. Does not instigate any negotiation messages.  whether to use access or trunk interfaces. This is achieved by using Dynamic Trunking Protocol (DTP).</li></ul>
+									
+									
+									
+									<p></p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="526" height="118" src="wp-content/uploads/2020/08/image-25.png" alt="" class="wp-image-4182" srcset="wp-content/uploads/2020/08/image-25.png 526w,wp-content/uploads/2020/08/image-25-300x67.png 300w" sizes="(max-width: 526px) 100vw, 526px" /><figcaption>switchport mode dynamic desirable<br></figcaption></figure></div>
+									
+									
+									
+									<p>Note that in the screenshot above the encapsulation stays the same (802.1q)  but the mode changed from switchport mode trunk to dynamic desirable. </p>
+									
+									<br>
+									
+									<p>Verifying the trunking protocols</p>
+									
+									
+									
+									<p>We can verify our Dynamic Trunking Protocol (DTP) setting on the switch using the command;</p>
+									
+									
+									
+									<p><em>show interfaces fastethernet 0/1 switchport</em></p>
+									
+									
+									
+									<p>Note that administrative mode is set to trunk as per our first example.  This would be dynamic desirable for our second. The encapsulation is set to dot1q as always, remember this is the only encapsulation setting this particular switch is capable of. </p>
+									
+									
+									
+									<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="533" height="369" src="wp-content/uploads/2020/08/image-24.png" alt="" class="wp-image-4181" srcset="wp-content/uploads/2020/08/image-24.png 533w, wp-content/uploads/2020/08/image-24-300x208.png 300w" sizes="(max-width: 533px) 100vw, 533px" /></figure></div>
+									
+									
+									
+									<h3>Summary</h3>
+									
+									
+									
+									<p>This is my second article in my Virtual Lan series. My first article <a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">Vlans the basics</a> looked at what Vlans are and why they are used. This article covered creating Vlans on a Cisco Switch. </p>
+									
+									
+									
+									<p>Vlan 10 was created the long way by first creating the Vlan, defining the interface range and then associating the two with each other. </p>
+									
+									
+									
+									<p>Vlan 20 was created the shorter way by defining the interface range and then associating those interfaces with Vlan 20. Knowledge of both methods are required if sitting the CCNA exam. </p>
+									
+									
+									
+									<p>We then looked at trunking protocols. Vlan Trunking Protocol (VTP) should not be confused with Dynamic Trunking Protocol (DTP). VTP merely advertises Vlans on one switch to all other switches on the LAN. VTP is not used very often due to it causing unforeseen problems.</p>
+									
+									
+									
+									<p>Dynamic Trunking Protocol (DTP) on the other hand is used to statically set the interface as a trunk or access interface. Alternatively DTP allows the switches negotiate between each other as to whether the interface should be a trunk or not. </p>
+									
+									
+									
+									<p>DTP allows you to either choose the encapsulation type used in the trunking (ISL or 802.1q) or let the switches negotiate this between themselves. Nowadays the only protocol used is 802.1q.</p>
+									
+									
+									
+									<p></p>
+
+<!-- Article Ends-->
+
+									
+
+</section>
+
+</div>
+</div>
+
+
+<!-- Sidebar -->
+<div id="sidebar">
+<div class="inner">
+
+<!-- Search -->
+	<section id="search" class="alt">
+		<form method="post" action="#">
+			<input type="text" name="query" id="query" placeholder="Search" />
+		</form>
+	</section>
+
+<!-- Menu -->
+	<nav id="menu">
+		<header class="major">
+			<h2>Menu</h2>
+		</header>
+		<ul>
+			<li><a href="index.html">Homepage</a></li>
+			<li>
+				<span class="opener">Computer Networking</span>
+				<ul>
+					<li><a href="telnet.htm">Telnet</a></li>
+					<li><a href="ssh.htm">SSH</a></li>												
+					<li><a href="cli.htm">Cisco Command Line Interface</a></li>
+					<li><a href="vlans.htm">Vlans</a></li>
+					<li><a href="voice_vlans.htm">Voice VLans</a></li>
+				</ul>
+			</li>
+			<li>
+				<span class="opener">Python Programming</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			
+			<li>
+				<span class="opener"> C Programming</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			<li>
+				<span class="opener"> Malware Analysis</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+				<li><a href="blank.htm">Blank</a></li>
+			<li>
+				<span class="opener">Blank Submenu</span>
+				<ul>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+					<li><a href="blank.htm">Blank</a></li>
+				</ul>
+			</li>
+			<li><a href="blank.htm">Blank</a></li>
+			<li><a href="blank.htm">Blank</a></li>
+			<li><a href="blank.htm">Blank</a></li>
+		</ul>
+	</nav>
+
+<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>Ante interdum</h2>
+		</header>
+		<div class="mini-posts">
+			<article>
+				<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+			</article>
+		</div>
+		<ul class="actions">
+			<li><a href="#" class="button">More</a></li>
+		</ul>
+	</section>
+
+<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>Get in touch</h2>
+		</header>
+		<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+		<ul class="contact">
+			<li class="icon solid fa-envelope"><a href="#">mailtheitshed@gmail.com</a></li>
+		
+			<li class="icon solid fa-home">Dublin, Ireland<br />
+			</li>
+		</ul>
+	</section>
+
+<!-- Footer -->
+	<footer id="footer">
+		<p class="copyright">&copy; The IT Sheds 2023. All rights reserved. 
+	</footer>
+
+</div>
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

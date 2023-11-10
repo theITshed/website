@@ -1,0 +1,349 @@
+
+<!Doctype html>
+  <title>Configure SSH on a Cisco Switch - The I.T Shed</title>
+<head> 
+	<link rel="stylesheet" href="css/styles_blog.css">                        <!-- This line associates the styles.css with the webpage -->
+	<link rel="icon" href="images/favicon.ico">			     <!-- Creates the favicon on the title tab -->
+
+	<p class= "nav"><a href="index.html">Home</a></p>
+	<p class= "nav2"><a href="about.htm">About</a></p>
+	<p class= "nav3"><a href = "https://theitshed.com"/>Blog</a></p> 
+	<p class= "nav4"><a href = "intvlan_rout.htm" >Contact</a></p>
+	<p class= "nav4"><a href="mailto:mailtheitshed@gmail.com?subject=Contact the IT Shed!">Contact</a></p>
+	
+
+<img class= "resize_pic1 img_posn" src="images/itshed-removebg-preview.png">
+</head>
+
+
+<body>
+
+<div class="top_of_blog_div">
+
+			      <!-- This is the big text in center of page -->
+
+
+
+</div>
+
+
+<div class="page-wrap">	
+
+<!------------------------------------------------------------------------------Page Header is above this line---------------------------------------->
+
+<h1 class="entry-title" itemprop="headline">
+		Configure SSH on a Cisco Switch	</h1>
+<div class="entry-meta"><div class="entry-meta-elements">		<span class="post-author">
+			<span class="posted-by vcard author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+				<span class="screen-reader-text">Posted by</span>
+
+				
+				<span>
+										By 					<a class="url fn n" title="View all posts by The I.T Shed" 
+						href="https://theitshed.com/author/paulmurphy03/" rel="author" itemprop="url">
+						<span class="author-name" itemprop="name">The I.T Shed</span>
+					</a>
+				</span>
+			</span>
+		</span>
+		<span class="posted-on">June 25, 2020</span></div></div><div class="post-thumb entry-media thumbnail"><img width="287" height="176" src="wp-content/uploads/2020/06/switch-rollover-2.jpg" class="attachment-large size-large wp-post-image" alt="Configure SSH" /><div class="post-thumb-caption">SSH Configuration for the CCNA</div></div>
+<div class="entry-content si-entry" itemprop="text">
+	
+<p>This article follows on from <a rel="noreferrer noopener" href="http://SO YOU WANT TO SETUP REMOTE ACCESS ON YOUR CISCO SWITCH?" target="_blank">Setup Remote access on a Cisco Switch</a> and <a rel="noreferrer noopener" href="https://theitshed.com/what-you-need-to-know-about-configuring-telnet/" target="_blank">Configure SSH on a Cisco Switch. </a></p>
+
+
+
+<p>In the previous<a rel="noreferrer noopener" href="https://theitshed.com/what-you-need-to-know-about-configuring-telnet/" target="_blank"> </a>articles I discussed connecting a PC to a Cisco switch using a console cable in order to configure a remote connection. </p>
+
+
+
+<p>In this article we will setup an SSH connection on the switch instead of a Telnet connection. SSH is more secure than Telnet as all data is encrypted. </p>
+
+
+
+<p>Lets go over what we did so far. </p>
+
+
+
+<p><strong>Console cable</strong></p>
+
+
+
+<p>First and foremost we need to connect to the switch using a console cable.</p>
+
+
+
+<figure class="wp-block-image"><img src="https://i2.wp.com/theitshed.com/wp-content/uploads/2020/06/switch-rollover-1.jpg?w=1200&amp;ssl=1" alt=""/></figure>
+
+
+
+<p>Access the Switches Command Line Interface (CLI) using a Terminal Emulator such as Putty.</p>
+
+
+
+<figure class="wp-block-image"><img src="https://www.tecmint.com/wp-content/uploads/2019/12/Install-PuTTy-on-Linux.png" alt="How to Install PuTTY on Linux"/></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>Configuration common to Telnet and SSH</strong></p>
+
+
+
+<p>After accessing the switch&#8217;s CLI we configured an Enable Mode password to stop any unauthorized access to the switch. In this case we set the password to &#8220;blueocean&#8221;</p>
+
+
+
+<figure class="wp-block-image"><img src="https://i1.wp.com/theitshed.com/wp-content/uploads/2020/06/image-11.png?w=1200&amp;ssl=1" alt=""/></figure>
+
+
+
+<p>Change the name of the switch. This is a good habit to get into. It is also required for SSH access.</p>
+
+
+
+<figure class="wp-block-image"><img src="https://theitshed.com/wp-content/uploads/2020/06/image-24.png" alt="This image has an empty alt attribute; its file name is image-24.png"/></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>VPN &#8211; Management Interface </strong></p>
+
+
+
+<p>We then created a Management interface by configuring IP address information on Virtual LAN 1. VLAN1 consists of all the ports on the switch. Check out <a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">VLans the basics</a> if you want to learn more about Vlans. </p>
+
+
+
+<p>The VLAN needs IP address information in order to access the switch remotely.</p>
+
+
+
+<figure class="wp-block-image"><img src="https://i1.wp.com/theitshed.com/wp-content/uploads/2020/06/image-12.png?w=1200&amp;ssl=1" alt=""/></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>Username and Password</strong></p>
+
+
+
+<p>Next we configured our individual username and password. This is stored locally on the switch and is used for remote login using Telnet and SSH. </p>
+
+
+
+<figure class="wp-block-image"><img src="https://i0.wp.com/theitshed.com/wp-content/uploads/2020/06/image-13.png?w=1200&amp;ssl=1" alt=""/></figure>
+
+
+
+<p>Finally we configured our Telnet commands completing our basic remote access setup. </p>
+
+
+
+<figure class="wp-block-image"><img src="https://theitshed.com/wp-content/uploads/2020/06/image-14.png" alt="This image has an empty alt attribute; its file name is image-14.png"/></figure>
+
+
+
+<p>At this point Telnet is setup on the switch allowing us the ability to access the switch remotely.</p>
+
+
+
+<p><strong>SSH</strong> <strong>Specific</strong></p>
+
+
+
+<p>Lets continue where we left off. We only need to add a few more commands for SSH to work.</p>
+
+
+
+<p>Open the CLI by directly clicking on it in Packet Tracer </p>
+
+
+
+<p></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="374" height="132" src="https://theitshed.com/wp-content/uploads/2020/06/image-23.png" alt="" class="wp-image-3662" srcset="https://theitshed.com/wp-content/uploads/2020/06/image-23.png 374w, https://theitshed.com/wp-content/uploads/2020/06/image-23-300x106.png 300w" sizes="(max-width: 374px) 100vw, 374px" /></figure>
+
+
+
+<p>and selecting the CLI.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="568" height="511" src="https://theitshed.com/wp-content/uploads/2020/06/image-21.png" alt="" class="wp-image-3660" srcset="https://theitshed.com/wp-content/uploads/2020/06/image-21.png 568w, https://theitshed.com/wp-content/uploads/2020/06/image-21-300x270.png 300w" sizes="(max-width: 568px) 100vw, 568px" /></figure>
+
+
+
+<p><strong>Transport Input</strong></p>
+
+
+
+<p>This command can be left out of the configuration, as was the case when we configured Telnet in the previous article. If its left out then it defaults to &#8220;transport input all&#8221;; allowing connections from both Telnet and SSH.   </p>
+
+
+
+<p>I will configure it here to only allow SSH connections. I&#8217;m doing this for two reasons. Firstly to show you the configuration and secondly because only allowing SSH connections will secure the switch by preventing Telnet connections. As I mentioned Telnet is not secure.</p>
+
+
+
+<p><strong>Line vty</strong></p>
+
+
+
+<p>To configure the &#8220;transport input&#8221; command, access the line vty 0 15 sub command. This was previously setup for the Telnet connection. Then add the command &#8220;transport input ssh&#8221;.               </p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="578" height="168" src="https://theitshed.com/wp-content/uploads/2020/06/image-25.png" alt="" class="wp-image-3667" srcset="https://theitshed.com/wp-content/uploads/2020/06/image-25.png 578w, https://theitshed.com/wp-content/uploads/2020/06/image-25-300x87.png 300w" sizes="(max-width: 578px) 100vw, 578px" /></figure>
+
+
+
+<p>Exit out of the line vty sub-command. </p>
+
+
+
+<p><strong>Domain Name</strong></p>
+
+
+
+<p>Add the command &#8220;ip domain-name example.com&#8221;</p>
+
+
+
+<p>example.com should be your company name, but realistically it can be anything. I named it &#8220;theitshed&#8221; after my website.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="567" height="165" src="https://theitshed.com/wp-content/uploads/2020/06/image-26.png" alt="" class="wp-image-3669" srcset="https://theitshed.com/wp-content/uploads/2020/06/image-26.png 567w, https://theitshed.com/wp-content/uploads/2020/06/image-26-300x87.png 300w" sizes="(max-width: 567px) 100vw, 567px" /></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>Encryption </strong></p>
+
+
+
+<p>SSH requires an encryption key in order to be secure. Type the command &#8220;crypto key generate rsa&#8221;.        You will be prompted for the amount of bits required for the key. The more bits the more secure the key.     I just pressed enter to accept the default 512.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="554" height="244" src="https://theitshed.com/wp-content/uploads/2020/06/image-27.png" alt="" class="wp-image-3670" srcset="https://theitshed.com/wp-content/uploads/2020/06/image-27.png 554w, https://theitshed.com/wp-content/uploads/2020/06/image-27-300x132.png 300w" sizes="(max-width: 554px) 100vw, 554px" /></figure>
+
+
+
+<p>And that it your done!!</p>
+
+
+
+<p><strong>Complete SSH configuration</strong></p>
+
+
+
+<p>The complete SSH configuration is listed below. The writing in blue is the commands I entered on the switch. The red is a brief explanation of the commands. </p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="948" height="580" src="https://theitshed.com/wp-content/uploads/2020/06/image-28.png" alt="" class="wp-image-3672" srcset="https://theitshed.com/wp-content/uploads/2020/06/image-28.png 948w, https://theitshed.com/wp-content/uploads/2020/06/image-28-300x184.png 300w, https://theitshed.com/wp-content/uploads/2020/06/image-28-768x470.png 768w" sizes="(max-width: 948px) 100vw, 948px" /></figure>
+
+
+
+<p>Now that SSH is configured, lets log in..</p>
+
+
+
+<p>Open a Terminal Emulator; on Packet Tracer, click on the PC, Desktop and Telnet/SSH client</p>
+
+
+
+<figure class="wp-block-image"><img src="https://theitshed.com/wp-content/uploads/2020/06/image-17.png" alt="This image has an empty alt attribute; its file name is image-17.png"/></figure>
+
+
+
+<p>Type your IP address and username then click connect.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="847" height="259" src="https://theitshed.com/wp-content/uploads/2020/06/image-29.png" alt="" class="wp-image-3678" srcset="https://theitshed.com/wp-content/uploads/2020/06/image-29.png 847w, https://theitshed.com/wp-content/uploads/2020/06/image-29-300x92.png 300w, https://theitshed.com/wp-content/uploads/2020/06/image-29-768x235.png 768w" sizes="(max-width: 847px) 100vw, 847px" /></figure>
+
+
+
+<p>You are now connected to the Switch via SSH!!</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="849" height="253" src="https://theitshed.com/wp-content/uploads/2020/06/image-30.png" alt="" class="wp-image-3679" srcset="https://theitshed.com/wp-content/uploads/2020/06/image-30.png 849w, https://theitshed.com/wp-content/uploads/2020/06/image-30-300x89.png 300w, https://theitshed.com/wp-content/uploads/2020/06/image-30-768x229.png 768w" sizes="(max-width: 849px) 100vw, 849px" /></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>Summary</strong></p>
+
+
+
+<p>This concludes my articles on remote access to a Cisco switch. I began this series by looking at initially setting up <a href="https://theitshed.com/remote-access-part-1-connect-via-console-cable/" target="_blank" rel="noreferrer noopener">Remote access to a Cisco Switch</a> and then moved on to <a href="https://theitshed.com/what-you-need-to-know-about-configuring-telnet/" target="_blank" rel="noreferrer noopener">Configuring Telnet on a Cisco Switch</a>.</p>
+
+
+
+<p>SSH is a more secure alternative to Telnet as SSH encrypts all data including usernames and passwords. Setting up SSH is a simple process and only require a few more steps than Telnet. </p>
+
+
+
+<p>If you haven&#8217;t done so already why not download a copy of <a href="https://www.netacad.com/courses/packet-tracer" target="_blank" rel="noreferrer noopener">Packet Tracer</a> and get practicing??                         </p>
+</div>
+
+
+
+
+<div class="entry-footer">
+
+	<span class="screen-reader-text">Tags: </span><div class="post-tags"><span class="cat-links"><a href="https://theitshed.com/tag/ccna/" rel="tag">ccna</a><a href="https://theitshed.com/tag/cisco/" rel="tag">cisco</a><a href="https://theitshed.com/tag/computer-networking/" rel="tag">computer networking</a><a href="https://theitshed.com/tag/network/" rel="tag">network+</a><a href="https://theitshed.com/tag/networking/" rel="tag">networking</a><a href="https://theitshed.com/tag/remote-login/" rel="tag">remote login</a><a href="https://theitshed.com/tag/secure-shell/" rel="tag">secure shell</a><a href="https://theitshed.com/tag/ssh/" rel="tag">ssh</a><a href="https://theitshed.com/tag/telnet/" rel="tag">telnet</a></span></div><span class="last-updated si-iflex-center">Last updated on August 12, 2020</span>
+</div>
+
+
+<section class="author-box" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+
+	<div class="author-box-avatar">
+		<img alt='' src='https://secure.gravatar.com/avatar/9db5802d1e6d857b4cedca143a8e8476?s=75&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/9db5802d1e6d857b4cedca143a8e8476?s=150&#038;d=mm&#038;r=g 2x' class='avatar avatar-75 photo' height='75' width='75' loading='lazy'/>	</div>
+
+	<div class="author-box-meta">
+		<div class="h4 author-box-title">
+							<a href="https://theitshed.com/author/paulmurphy03/" class="url fn n" rel="author" itemprop="url">
+				The I.T Shed	
+				</a>
+						</div>
+
+		
+		
+		<div class="author-box-content" itemprop="description">
+					</div>
+
+		
+<div class="more-posts-button">
+	<a href="https://theitshed.com/author/paulmurphy03/" class="si-btn btn-text-1" role="button"><span>View All Posts</span></i></a>
+</div>
+	</div><!-- END .author-box-meta -->
+
+</section>
+
+<section class="post-nav" role="navigation">
+	
+	
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Configuring Telnet</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>The I.T Shed</strong> </a>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Configuring Telnet</h1>
+									</header>
+
+	<p>My last networking article; <a href="https://theitshed.com/remote-access-part-1-connect-via-console-cable/" target="_blank" aria-label="undefined (opens in a new tab)" rel="noreferrer noopener">Connecting to a switch by remote access,</a> I discussed connecting a PC to a Cisco switch using a Console cable. In this article I will follow up in this article by configuring the switch to receive a remote Telnet connection. We will then have the ability to remotely connect to the switch. </p>
+
+
+
+<p>A word of warning. Telnet is not secure and transmits all data in clear text. In reality we would access the switch using Secure Shell (SSH) instead of Telnet. All the the information here also applies to  SSH, except we would need to add a few more steps. I will discuss SSH specifically in a future article.</p>
+
+
+
+<p>My previous article <a rel="noreferrer noopener" href="https://theitshed.com/remote-access-part-1-connect-via-console-cable/" target="_blank">Connecting to a switch by remote access</a> finished with us connected to our physical switch with a console cable and our terminal emulator running. If using Packet Tracer we would have a switch CLI open. </p>
+
+
+
+<figure class="wp-block-image"><img src="wp-content/uploads/2020/06/switch-rollover-1.jpg" alt="This image has an empty alt attribute; its file name is switch-rollover-1.jpg"/></figure>
+
+
+
+<p></p>
+
+
+
+<h3><strong>Enable mode Password</strong></h3>
+
+
+
+<p>Anyone can access <em>User mode</em> on Cisco switches unhindered. However<em> Enable mode </em>requires a password. This is referred to as a shared password as its used by everyone. </p>
+
+
+
+<p><em><strong>enable secret</strong></em> <span class="has-inline-color has-vivid-red-color"><strong>password*</strong> </span>(where the <span class="has-inline-color has-vivid-red-color"><strong><em>password</em></strong>*</span> is the actual password you choose) is used.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="571" height="260" src="wp-content/uploads/2020/06/image-11.png" alt="" class="wp-image-3625" srcset="wp-content/uploads/2020/06/image-11.png 571w, wp-content/uploads/2020/06/image-11-300x137.png 300w" sizes="(max-width: 571px) 100vw, 571px" /></figure>
+
+
+
+<p>In Global Configuration mode I have set the password to <em><strong>blueocean</strong></em></p>
+
+
+
+<p>I am now prompted for a password when entering Enable mode</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="574" height="174" src="wp-content/uploads/2020/06/image-10.png" alt="" class="wp-image-3624" srcset="wp-content/uploads/2020/06/image-10.png 574w, wp-content/uploads/2020/06/image-10-300x91.png 300w" sizes="(max-width: 574px) 100vw, 574px" /></figure>
+
+
+
+<p>Note that even though I typed the password nothing shows on the screen. This is normal and it works fine, once you type the correct password of course!</p>
+
+
+
+<h3><strong>Management</strong> <strong>IP address</strong></h3>
+
+
+
+<p>In order to setup a remote connection to our Switch we must first configure a management IP address. </p>
+
+
+
+<p>This IP address has nothing to do with the movement of frames on our switch. It&#8217;s solely used as a means to access the switch with a remote connection. </p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="398" height="227" src="wp-content/uploads/2020/06/image-6.png" alt="" class="wp-image-3617" srcset="wp-content/uploads/2020/06/image-6.png 398w, wp-content/uploads/2020/06/image-6-300x171.png 300w" sizes="(max-width: 398px) 100vw, 398px" /></figure>
+
+
+
+<p>We connect to our switch from a PC using an Ethernet cable. In the above example I connected the cable into the switches Fast Ethernet 0/1 interface. In reality we can connect the cable into any of the switches Fast Ethernet interfaces.</p>
+
+
+
+<h3><strong>Virtual Lan (VLAN)</strong></h3>
+
+
+
+<p>Virtual Lans (VLAN&#8217;s) are a big subject and beyond the scope of this article. If your interested in knowing more check out my articles; <a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">VLans the Basics</a></p>
+
+
+
+<p>For the purpose of this article all we need to know is that Vlan 1 contains all of the switches interfaces by default. What that means is that we will have access to Vlan 1 whether we plug our cable into interface Fa0/1, Fa0/24 or anything in-between. So it makes sense for us to use Vlan1 as our management interfaces.</p>
+
+
+
+<p></p>
+
+
+
+<h3>                          <strong>Configuring the Switch</strong> <strong>for Telnet</strong></h3>
+
+
+
+<p>Now that I have explained the basics we can get on with configuring the switch. There are a number of steps we must complete in order to configure our switch for Telnet connections.</p>
+
+
+
+<ul><li>Navigate to Global Configuration mode</li><li>Configure an <em>enable mode</em> password</li><li>Configure the Vlan interface</li><li>Configure Telnet</li></ul>
+
+
+
+<p></p>
+
+
+
+<h3><strong>Configuration mode</strong></h3>
+
+
+
+<ul><li>Enter enable mode on the switch by typing <strong><em>enable</em></strong></li><li>Enter Global Configuration mode by typing <em><strong>conf t</strong></em></li></ul>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="569" height="207" src="wp-content/uploads/2020/06/image-7.png" alt="" class="wp-image-3619" srcset="wp-content/uploads/2020/06/image-7.png 569w, wp-content/uploads/2020/06/image-7-300x109.png 300w" sizes="(max-width: 569px) 100vw, 569px" /></figure>
+
+
+
+<p></p>
+
+
+
+<h3><strong>Configure the Enable mode shared password</strong></h3>
+
+
+
+<figure class="wp-block-image"><img src="wp-content/uploads/2020/06/image-11.png" alt="This image has an empty alt attribute; its file name is image-11.png"/></figure>
+
+
+
+<p></p>
+
+
+
+<h3><strong>Configure the VLAN Interface</strong></h3>
+
+
+
+<ul><li>enter the vlan interface by typing <em><strong>int vlan 1</strong></em></li><li>type the management IP Address followed by subnet mask.                                                                                  In this case IP <em><strong>192.168.1.30</strong></em> and subnet mask <em><strong>255.255.255.0</strong></em></li><li>Bring up the interface by typing <strong>no shutdown</strong> or <strong>no shut</strong></li><li>Type <em><strong>exit</strong></em> to return to Global config mode</li></ul>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="570" height="286" src="wp-content/uploads/2020/06/image-12.png" alt="" class="wp-image-3628" srcset="wp-content/uploads/2020/06/image-12.png 570w, wp-content/uploads/2020/06/image-12-300x151.png 300w" sizes="(max-width: 570px) 100vw, 570px" /></figure>
+
+
+
+<p></p>
+
+
+
+<h3><strong>Configure Telnet </strong></h3>
+
+
+
+<p>Telnet and (SSH for that matter) require a per-username and password combination, as opposed to the shared password used with <em>enable mode</em>.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="575" height="195" src="wp-content/uploads/2020/06/image-13.png" alt="" class="wp-image-3630" srcset="wp-content/uploads/2020/06/image-13.png 575w, wp-content/uploads/2020/06/image-13-300x102.png 300w" sizes="(max-width: 575px) 100vw, 575px" /></figure>
+
+
+
+<p>The specific Telnet configuration requires access on <em>line vty 0 15</em> and the <em>login local</em> command.                  </p>
+
+<p></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="572" height="207" src="wp-content/uploads/2020/06/image-14.png" alt="" class="wp-image-3631" srcset="wp-content/uploads/2020/06/image-14.png 572w, wp-content/uploads/2020/06/image-14-300x109.png 300w" sizes="(max-width: 572px) 100vw, 572px" /></figure>
+
+
+
+<p>The 0 15 means that there can be 16 (0 through to 15) simultaneous Telnet connections. i.e 16 people can log in at the same time on the various different lines. The &#8220;local&#8221; part of the login tells the program to look for username and password combination on the switch as the information is stored locally.</p>
+
+
+
+<p></p>
+
+
+
+<p>Congratulations, Telnet is now configured!</p>
+
+
+
+<p></p>
+
+
+
+<h3>                             <strong>Connecting via Telnet</strong></h3>
+
+
+
+<p>Lets connect to Telnet. Connect the switch with an Ethernet cable</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img loading="lazy" src="wp-content/uploads/2020/06/image-15.png" alt="" class="wp-image-3637" width="472" height="173" srcset="wp-content/uploads/2020/06/image-15.png 462w, wp-content/uploads/2020/06/image-15-300x110.png 300w" sizes="(max-width: 472px) 100vw, 472px" /></figure>
+
+
+
+<p>Ensure your PC is on the the same subnet</p>
+
+
+
+<p>On Packet Tracer;</p>
+
+
+
+<ul><li>click on the PC, Config, FastEthernet0</li><li>Type an IP address with the same in the same subnet range as your switch </li><li>The Subnet mask should propagate automatically, if not type 255.255.255.0</li></ul>
+
+
+
+<p></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="868" height="310" src="/wp-content/uploads/2020/06/image-16.png" alt="" class="wp-image-3638" srcset="wp-content/uploads/2020/06/image-16.png 868w, uploads/2020/06/image-16-300x107.png 300w, wp-content/uploads/2020/06/image-16-768x274.png 768w" sizes="(max-width: 868px) 100vw, 868px" /></figure>
+
+
+
+<p>Now click Desktop, scroll down and select Telnet/SSH client</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="859" height="469" src="wp-content/uploads/2020/06/image-17.png" alt="" class="wp-image-3640" srcset="wp-content/uploads/2020/06/image-17.png 859w, wp-content/uploads/2020/06/image-17-300x164.png 300w, wp-content/uploads/2020/06/image-17-768x419.png 768w" sizes="(max-width: 859px) 100vw, 859px" /></figure>
+
+
+
+<p>Change the connection type from SSH to Telnet</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="865" height="282" src="wp-content/uploads/2020/06/image-18.png" alt="" class="wp-image-3641" srcset="wp-content/uploads/2020/06/image-18.png 865w, wp-content/uploads/2020/06/image-18-300x98.png 300w, wp-content/uploads/2020/06/image-18-768x250.png 768w" sizes="(max-width: 865px) 100vw, 865px" /></figure>
+
+
+
+<p>Enter the IP address of the switch and press Connect</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="863" height="242" src="wp-content/uploads/2020/06/image-19.png" alt="" class="wp-image-3643" srcset="wp-content/uploads/2020/06/image-19.png 863w, wp-content/uploads/2020/06/image-19-300x84.png 300w,wp-content/uploads/2020/06/image-19-768x215.png 768w" sizes="(max-width: 863px) 100vw, 863px" /></figure>
+
+
+
+<p></p>
+
+
+
+<ul><li>I am prompted for my <em>username</em> and <em>password</em> that I set up on the switch earlier. </li><li>then for the <em>enable mode</em> password </li><li>Im now connected to the switch!!</li></ul>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="863" height="342" src="wp-content/uploads/2020/06/image-20.png" alt="" class="wp-image-3644" srcset="wp-content/uploads/2020/06/image-20.png 863w,wp-content/uploads/2020/06/image-20-300x119.png 300w,wp-content/uploads/2020/06/image-20-768x304.png 768w" sizes="(max-width: 863px) 100vw, 863px" /></figure>
+
+
+
+<p>This concludes Telnet configuration and access. Dont forget if you want to know more about VLans check out this article <a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">Vlans the basics</a></p>
+
+
+
+<p>Need more help? Check out my configuring Telnet video on <a href="https://www.youtube.com/watch?v=UXIZBnku6GM&amp;t=89s">Youtube</a></p>
+
+
+<p></p>
+
+
+									
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="telnet.htm">Configuring Telnet</a></li>
+										<li><a href="elements.html">Elements</a></li>
+										<li>
+											<span class="opener">Computer Networking</span>
+											<ul>
+												<li><a href=<a href="telnet.htm">Configuring Telnet</a></li>
+												<li><a href="#">Ipsum Adipiscing</a></li>
+												<li><a href="#">Tempus Magna</a></li>
+												<li><a href="#">Feugiat Veroeros</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Etiam Dolore</a></li>
+										<li><a href="#">Adipiscing</a></li>
+										<li>
+											<span class="opener">Another Submenu</span>
+											<ul>
+												<li><a href="#">Lorem Dolor</a></li>
+												<li><a href="#">Ipsum Adipiscing</a></li>
+												<li><a href="#">Tempus Magna</a></li>
+												<li><a href="#">Feugiat Veroeros</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Maximus Erat</a></li>
+										<li><a href="#">Sapien Mauris</a></li>
+										<li><a href="#">Amet Lacinia</a></li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Ante interdum</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="#" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+										<li class="icon solid fa-phone">(000) 000-0000</li>
+										<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
+										Nashville, TN 00000-0000</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>

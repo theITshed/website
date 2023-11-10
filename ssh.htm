@@ -1,0 +1,456 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Configuring SSH</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>The I.T Shed</strong> </a>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Configuring SSH</h1>
+									</header>
+
+
+<!-- Article Begins-->
+
+
+<p>This article follows on from <a rel="noreferrer noopener" href="http://SO YOU WANT TO SETUP REMOTE ACCESS ON YOUR CISCO SWITCH?" target="_blank">Setup Remote access on a Cisco Switch</a> and <a rel="noreferrer noopener" href="https://theitshed.com/what-you-need-to-know-about-configuring-telnet/" target="_blank">Configure SSH on a Cisco Switch. </a></p>
+
+
+
+<p>In the previous<a rel="noreferrer noopener" href="https://theitshed.com/what-you-need-to-know-about-configuring-telnet/" target="_blank"> </a>articles I discussed connecting a PC to a Cisco switch using a console cable in order to configure a remote connection. </p>
+
+
+
+<p>In this article we will setup an SSH connection on the switch instead of a Telnet connection. SSH is more secure than Telnet as all data is encrypted. </p>
+
+
+
+<p>Lets go over what we did so far. </p>
+
+
+
+<p><strong>Console cable</strong></p>
+
+
+
+<p>First and foremost we need to connect to the switch using a console cable.</p>
+
+
+
+<figure class="wp-block-image"><img src="https://i2.wp.com/theitshed.com/images/switch-rollover-1.jpg?w=1200&amp;ssl=1" alt=""/></figure>
+
+
+
+<p>Access the Switches Command Line Interface (CLI) using a Terminal Emulator such as Putty.</p>
+
+
+
+<figure class="wp-block-image"><img src="https://www.tecmint.com/wp-content/uploads/2019/12/Install-PuTTy-on-Linux.png" alt="How to Install PuTTY on Linux"/></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>Configuration common to Telnet and SSH</strong></p>
+
+
+
+<p>After accessing the switch&#8217;s CLI we configured an Enable Mode password to stop any unauthorized access to the switch. In this case we set the password to &#8220;blueocean&#8221;</p>
+
+
+
+<figure class="wp-block-image"><img src="https://i1.wp.com/theitshed.com/images/image-11.png?w=1200&amp;ssl=1" alt=""/></figure>
+
+
+
+<p>Change the name of the switch. This is a good habit to get into. It is also required for SSH access.</p>
+
+
+
+<figure class="wp-block-image"><img src="images/image-24.png" alt="This image has an empty alt attribute; its file name is image-24.png"/></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>VPN &#8211; Management Interface </strong></p>
+
+
+
+<p>We then created a Management interface by configuring IP address information on Virtual LAN 1. VLAN1 consists of all the ports on the switch. Check out <a href="https://theitshed.com/vlans-the-basics/" target="_blank" rel="noreferrer noopener">VLans the basics</a> if you want to learn more about Vlans. </p>
+
+
+
+<p>The VLAN needs IP address information in order to access the switch remotely.</p>
+
+
+
+<figure class="wp-block-image"><img src="https://i1.wp.com/theitshed.com/images/image-12.png?w=1200&amp;ssl=1" alt=""/></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>Username and Password</strong></p>
+
+
+
+<p>Next we configured our individual username and password. This is stored locally on the switch and is used for remote login using Telnet and SSH. </p>
+
+
+
+<figure class="wp-block-image"><img src="https://i0.wp.com/theitshed.com/images/image-13.png?w=1200&amp;ssl=1" alt=""/></figure>
+
+
+
+<p>Finally we configured our Telnet commands completing our basic remote access setup. </p>
+
+
+
+<figure class="wp-block-image"><img src="images/image-14.png" alt="This image has an empty alt attribute; its file name is image-14.png"/></figure>
+
+
+
+<p>At this point Telnet is setup on the switch allowing us the ability to access the switch remotely.</p>
+
+
+
+<p><strong>SSH</strong> <strong>Specific</strong></p>
+
+
+
+<p>Lets continue where we left off. We only need to add a few more commands for SSH to work.</p>
+
+
+
+<p>Open the CLI by directly clicking on it in Packet Tracer </p>
+
+
+
+<p></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="374" height="132" src="images/image-23.png" alt="" class="wp-image-3662" srcset="images/image-23.png 374w, images/image-23-300x106.png 300w" sizes="(max-width: 374px) 100vw, 374px" /></figure>
+
+
+
+<p>and selecting the CLI.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="568" height="511" src="images/image-21.png" alt="" class="wp-image-3660" srcset="images/image-21.png 568w, images/image-21-300x270.png 300w" sizes="(max-width: 568px) 100vw, 568px" /></figure>
+
+
+
+<p><strong>Transport Input</strong></p>
+
+
+
+<p>This command can be left out of the configuration, as was the case when we configured Telnet in the previous article. If its left out then it defaults to &#8220;transport input all&#8221;; allowing connections from both Telnet and SSH.   </p>
+
+
+
+<p>I will configure it here to only allow SSH connections. I&#8217;m doing this for two reasons. Firstly to show you the configuration and secondly because only allowing SSH connections will secure the switch by preventing Telnet connections. As I mentioned Telnet is not secure.</p>
+
+
+
+<p><strong>Line vty</strong></p>
+
+
+
+<p>To configure the &#8220;transport input&#8221; command, access the line vty 0 15 sub command. This was previously setup for the Telnet connection. Then add the command &#8220;transport input ssh&#8221;.               </p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="578" height="168" src="images/image-25.png" alt="" class="wp-image-3667" srcset="images/image-25.png 578w, images/image-25-300x87.png 300w" sizes="(max-width: 578px) 100vw, 578px" /></figure>
+
+
+
+<p>Exit out of the line vty sub-command. </p>
+
+
+
+<p><strong>Domain Name</strong></p>
+
+
+
+<p>Add the command &#8220;ip domain-name example.com&#8221;</p>
+
+
+
+<p>example.com should be your company name, but realistically it can be anything. I named it &#8220;theitshed&#8221; after my website.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="567" height="165" src="images/image-26.png" alt="" class="wp-image-3669" srcset="images/image-26.png 567w, images/image-26-300x87.png 300w" sizes="(max-width: 567px) 100vw, 567px" /></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>Encryption </strong></p>
+
+
+
+<p>SSH requires an encryption key in order to be secure. Type the command &#8220;crypto key generate rsa&#8221;.        You will be prompted for the amount of bits required for the key. The more bits the more secure the key.     I just pressed enter to accept the default 512.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="554" height="244" src="images/image-27.png" alt="" class="wp-image-3670" srcset="images/image-27.png 554w, images/image-27-300x132.png 300w" sizes="(max-width: 554px) 100vw, 554px" /></figure>
+
+
+
+<p>And that it your done!!</p>
+
+
+
+<p><strong>Complete SSH configuration</strong></p>
+
+
+
+<p>The complete SSH configuration is listed below. The writing in blue is the commands I entered on the switch. The red is a brief explanation of the commands. </p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="948" height="580" src="images/image-28.png" alt="" class="wp-image-3672" srcset="images/image-28.png 948w, images/image-28-300x184.png 300w, images/image-28-768x470.png 768w" sizes="(max-width: 948px) 100vw, 948px" /></figure>
+
+
+
+<p>Now that SSH is configured, lets log in..</p>
+
+
+
+<p>Open a Terminal Emulator; on Packet Tracer, click on the PC, Desktop and Telnet/SSH client</p>
+
+
+
+<figure class="wp-block-image"><img src="images/image-17.png" alt="This image has an empty alt attribute; its file name is image-17.png"/></figure>
+
+
+
+<p>Type your IP address and username then click connect.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="847" height="259" src="images/image-29.png" alt="" class="wp-image-3678" srcset="images/image-29.png 847w, images/image-29-300x92.png 300w, images/image-29-768x235.png 768w" sizes="(max-width: 847px) 100vw, 847px" /></figure>
+
+
+
+<p>You are now connected to the Switch via SSH!!</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="849" height="253" src="images/image-30-768x229.png" alt="" class="wp-image-3679" srcset="images/image-30-768x229.png 849w, images/image-30-300x89.png 300w, images/image-30-768x229.png 768w" sizes="(max-width: 849px) 100vw, 849px" /></figure>
+
+
+
+<p></p>
+
+
+
+<p><strong>Summary</strong></p>
+
+
+
+<p>This concludes my articles on remote access to a Cisco switch. I began this series by looking at initially setting up <a href="https://theitshed.com/remote-access-part-1-connect-via-console-cable/" target="_blank" rel="noreferrer noopener">Remote access to a Cisco Switch</a> and then moved on to <a href="https://theitshed.com/what-you-need-to-know-about-configuring-telnet/" target="_blank" rel="noreferrer noopener">Configuring Telnet on a Cisco Switch</a>.</p>
+
+
+
+<p>SSH is a more secure alternative to Telnet as SSH encrypts all data including usernames and passwords. Setting up SSH is a simple process and only require a few more steps than Telnet. </p>
+
+
+
+<p>If you haven&#8217;t done so already why not download a copy of <a href="https://www.netacad.com/courses/packet-tracer" target="_blank" rel="noreferrer noopener">Packet Tracer</a> and get practicing??                         </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p></p>
+
+
+
+<!-- Article Ends-->
+
+									
+
+								</section>
+
+						</div>
+					</div>
+
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+					<div class="inner">
+
+						<!-- Search -->
+							<section id="search" class="alt">
+								<form method="post" action="#">
+									<input type="text" name="query" id="query" placeholder="Search" />
+								</form>
+							</section>
+
+						<!-- Menu -->
+							<nav id="menu">
+								<header class="major">
+									<h2>Menu</h2>
+								</header>
+								<ul>
+									<li><a href="index.html">Homepage</a></li>
+									<li>
+										<span class="opener">Computer Networking</span>
+										<ul>
+											<li><a href="telnet.htm">Telnet</a></li>
+											<li><a href="ssh.htm">SSH</a></li>												
+											<li><a href="cli.htm">Cisco Command Line Interface</a></li>
+											<li><a href="vlans.htm">Vlans</a></li>
+											<li><a href="voice_vlans.htm">Voice VLans</a></li>
+										</ul>
+									</li>
+									<li>
+										<span class="opener">Python Programming</span>
+										<ul>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+										</ul>
+									</li>
+									
+									<li>
+										<span class="opener"> C Programming</span>
+										<ul>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+										</ul>
+									</li>
+									<li>
+										<span class="opener"> Malware Analysis</span>
+										<ul>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+										</ul>
+										<li><a href="blank.htm">Blank</a></li>
+									<li>
+										<span class="opener">Blank Submenu</span>
+										<ul>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+											<li><a href="blank.htm">Blank</a></li>
+										</ul>
+									</li>
+									<li><a href="blank.htm">Blank</a></li>
+									<li><a href="blank.htm">Blank</a></li>
+									<li><a href="blank.htm">Blank</a></li>
+								</ul>
+							</nav>
+
+						<!-- Section -->
+							<section>
+								<header class="major">
+									<h2>Ante interdum</h2>
+								</header>
+								<div class="mini-posts">
+									<article>
+										<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+										<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+									</article>
+									<article>
+										<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+										<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+									</article>
+									<article>
+										<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+										<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+									</article>
+								</div>
+								<ul class="actions">
+									<li><a href="#" class="button">More</a></li>
+								</ul>
+							</section>
+
+						<!-- Section -->
+							<section>
+								<header class="major">
+									<h2>Get in touch</h2>
+								</header>
+								<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+								<ul class="contact">
+									<li class="icon solid fa-envelope"><a href="#">mailtheitshed@gmail.com</a></li>
+								
+									<li class="icon solid fa-home">Dublin, Ireland<br />
+									</li>
+								</ul>
+							</section>
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">&copy; The IT Sheds 2023. All rights reserved. 
+							</footer>
+
+					</div>
+				</div>
+
+		</div>
+
+	<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+</body>
+</html>
